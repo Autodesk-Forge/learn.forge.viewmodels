@@ -25,6 +25,8 @@ namespace forgesample.Controllers
         // in this case, let's return all buckets
         BucketsApi appBckets = new BucketsApi();
         appBckets.Configuration.AccessToken = oauth.access_token;
+
+        // to simplify, let's return only the first 100 buckets
         dynamic buckets = await appBckets.GetBucketsAsync("US", 100);
         foreach (KeyValuePair<string, dynamic> bucket in new DynamicDictionaryItems(buckets.items))
         {
@@ -46,9 +48,23 @@ namespace forgesample.Controllers
       return nodes;
     }
 
-    public class CreateBucketModel
+    /// <summary>
+    /// Model data for jsTree used on GetOSSAsync
+    /// </summary>
+    public class TreeNode
     {
-      public string bucketKey { get; set; }
+      public TreeNode(string id, string text, string type, bool children)
+      {
+        this.id = id;
+        this.text = text;
+        this.type = type;
+        this.children = children;
+      }
+
+      public string id { get; set; }
+      public string text { get; set; }
+      public string type { get; set; }
+      public bool children { get; set; }
     }
 
     /// <summary>
@@ -64,6 +80,14 @@ namespace forgesample.Controllers
       PostBucketsPayload bucketPayload = new PostBucketsPayload(bucket.bucketKey, null,
         PostBucketsPayload.PolicyKeyEnum.Transient);
       return await buckets.CreateBucketAsync(bucketPayload, "US");
+    }
+
+    /// <summary>
+    /// Input model for CreateBucket method
+    /// </summary>
+    public class CreateBucketModel
+    {
+      public string bucketKey { get; set; }
     }
 
     /// <summary>
@@ -107,25 +131,6 @@ namespace forgesample.Controllers
       File.Delete(fileSavePath);
 
       return uploadedObj;
-    }
-
-    /// <summary>
-    /// Format data for jsTree
-    /// </summary>
-    public class TreeNode
-    {
-      public TreeNode(string id, string text, string type, bool children)
-      {
-        this.id = id;
-        this.text = text;
-        this.type = type;
-        this.children = children;
-      }
-
-      public string id { get; set; }
-      public string text { get; set; }
-      public string type { get; set; }
-      public bool children { get; set; }
     }
 
     /// <summary>
