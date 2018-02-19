@@ -18,11 +18,17 @@ function createNewBucket() {
   var policyKey = $('#newBucketPolicyKey').val();
   jQuery.post({
     url: '/api/forge/oss/buckets',
-    data: { 'bucketKey': bucketKey, 'policyKey': policyKey },
+    contentType: 'application/json',
+    data: JSON.stringify({ 'bucketKey': bucketKey, 'policyKey': policyKey }),
     success: function (res) {
       $('#appBuckets').jstree(true).refresh();
       $('#createBucketModal').modal('toggle');
     },
+    error: function (err) {
+      if (err.status == 409)
+        alert('Bucket already exists - 409: Duplicated')
+      console.log(err);
+    }
   });
 }
 
@@ -125,7 +131,8 @@ function translateObject(node) {
   var objectKey = node.id;
   jQuery.post({
     url: '/api/forge/modelderivative/jobs',
-    data: { 'bucketKey': bucketKey, 'objectName': objectKey },
+    contentType: 'application/json',
+    data: JSON.stringify({ 'bucketKey': bucketKey, 'objectName': objectKey }),
     success: function (res) {
 
     },
