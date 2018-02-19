@@ -14,7 +14,6 @@ function launchViewer(urn) {
 }
 
 function onDocumentLoadSuccess(doc) {
-
   // We could still make use of Document.getSubItemsWithProperties()
   // However, when using a ViewingApplication, we have access to the **bubble** attribute,
   // which references the root node of a graph that wraps each object from the Manifest JSON.
