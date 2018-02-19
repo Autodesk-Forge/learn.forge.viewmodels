@@ -119,6 +119,6 @@ router.post('/api/forge/oss/objects', upload.single('fileToUpload'), function (r
 
 String.prototype.toBase64 = function () {
     return new Buffer(this).toString('base64');
-  };
+};
 
 module.exports = router;

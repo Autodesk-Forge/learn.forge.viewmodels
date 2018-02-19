@@ -25,14 +25,8 @@ var router = express.Router();
 // Forge NPM
 var forgeSDK = require('forge-apis');
 
-// Forge config information, such as client ID and secret
-var config = require('./config');
-
 // actually perform the token operation
 var oauth = require('./oauth');
-
-// Cache of the access tokens
-var _cached = [];
 
 // Endpoint to return a 2-legged access token
 router.get('/api/forge/oauth/token', function (req, res) {

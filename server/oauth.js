@@ -67,7 +67,7 @@ module.exports = {
     OAuthClient: function (scopes) {
         var client_id = config.credentials.client_id;
         var client_secret = config.credentials.client_secret;
-        if (scopes==undefined) scopes = config.scopeInternal;
+        if (scopes == undefined) scopes = config.scopeInternal;
         return new forgeSDK.AuthClientTwoLegged(client_id, client_secret, scopes);
     }
 }
