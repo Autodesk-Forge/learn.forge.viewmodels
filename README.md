@@ -1,4 +1,4 @@
-# forge.learning.viewmodels.nodejs
+# forge.tutorial.viewmodels.nodejs
 
 [![Node.js](https://img.shields.io/badge/Node.js-4.4.3-blue.svg)](https://nodejs.org/)
 [![npm](https://img.shields.io/badge/npm-2.15.1-blue.svg)](https://www.npmjs.com/)
@@ -12,7 +12,7 @@
 
 # Description
 
-This sample is part of the [Forge Tutorials](http://forgetutorials.autodesk.io).
+This sample is part of the [Learn Forge](http://learnforge.autodesk.io) tutorials.
 
 # Setup
 
