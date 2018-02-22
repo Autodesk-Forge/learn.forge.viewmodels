@@ -65,7 +65,24 @@ function prepareAppBucketTree() {
     $('#appBuckets').jstree('open_all');
   }).bind("activate_node.jstree", function (evt, data) {
     if (data != null && data.node != null && data.node.type == 'object') {
-      launchViewer(data.node.id);
+      $("#forgeViewer").empty();
+      var urn = data.node.id;
+      getForgeToken(function (access_token) {
+        jQuery.ajax({
+          url: 'https://developer.api.autodesk.com/modelderivative/v2/designdata/' + urn + '/manifest',
+          headers: { 'Authorization': 'Bearer ' + access_token },
+          success: function (res) {
+            if (res.status === 'success') launchViewer(urn);
+            else $("#forgeViewer").html('The translation job still running: ' + res.progress + '. Please try again in a moment.');
+          },
+          error: function (err) {
+            var msgButton = 'This file is not translated yet! ' +
+              '<button class="btn btn-xs btn-info" onclick="translateObject()"><span class="glyphicon glyphicon-eye-open"></span> ' +
+              'Start translation</button>'
+            $("#forgeViewer").html(msgButton);
+          }
+        });
+      })
     }
   });
 }
@@ -81,7 +98,8 @@ function autodeskCustomMenu(autodeskNode) {
           action: function () {
             var treeNode = $('#appBuckets').jstree(true).get_selected(true)[0];
             uploadFile(treeNode);
-          }
+          },
+          icon: 'glyphicon glyphicon-cloud-upload'
         }
       };
       break;
@@ -91,8 +109,9 @@ function autodeskCustomMenu(autodeskNode) {
           label: "Translate",
           action: function () {
             var treeNode = $('#appBuckets').jstree(true).get_selected(true)[0];
-            translateObject(treeNode);
-          }
+            translateObject(treeNode.data.id);
+          },
+          icon: 'glyphicon glyphicon-eye-open'
         }
       };
       break;
@@ -104,6 +123,7 @@ function autodeskCustomMenu(autodeskNode) {
 function uploadFile(node) {
   $('#hiddenUploadField').click();
   $('#hiddenUploadField').change(function () {
+    if (this.files.length == 0) return;
     var file = this.files[0];
     switch (node.type) {
       case 'bucket':
@@ -127,6 +147,8 @@ function uploadFile(node) {
 }
 
 function translateObject(node) {
+  $("#forgeViewer").empty();
+  if (node == null) node = $('#appBuckets').jstree(true).get_selected(true)[0];
   var bucketKey = node.parents[0];
   var objectKey = node.id;
   jQuery.post({
@@ -134,7 +156,7 @@ function translateObject(node) {
     contentType: 'application/json',
     data: JSON.stringify({ 'bucketKey': bucketKey, 'objectName': objectKey }),
     success: function (res) {
-
+      $("#forgeViewer").html('Translation started! Please try again in a moment.');
     },
   });
 }
