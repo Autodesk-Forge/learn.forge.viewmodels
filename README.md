@@ -13,7 +13,7 @@
 
 # Description
 
-This sample is part of the [Forge Tutorials](http://forgetutorials.autodesk.io).
+This sample is part of the [Learn Forge](http://learnforge.autodesk.io) tutorials.
 
 # Setup
 
