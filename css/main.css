@@ -1,40 +1,23 @@
-﻿html {
-  position: relative;
+﻿html, body{
   min-height: 100%;
+  height: 100%;
+}
+
+.fill{
+  height: calc(100vh - 100px);
 }
 
 body {
   padding-top: 60px; /* space for the top nav bar */
-  margin-bottom: 60px; /* Margin bottom by footer height */
   margin-right: 30px;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 30px;
-}
-
-div.foldertree {
+#appBuckets {
   overflow: auto;
-  height: 500px;
+  width: 100%;
+  height: calc(100vh - 150px);
 }
 
-img.gray {
-  filter: gray; /* IE6-9 */
-  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
-  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-}
-
-  /* Disable grayscale on hover */
-  img.gray:hover {
-    filter: none;
-    -webkit-filter: grayscale(0);
-  }
-
-div.forgeViewer {
-  height: 540px;
+#forgeViewer {
   width: 100%;
 }
