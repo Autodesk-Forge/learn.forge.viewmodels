@@ -27,7 +27,7 @@ func StartServer(port, clientID, clientSecret string) {
 	http.HandleFunc("/api/forge/oss/objects", service.manageObjects)
 	http.HandleFunc("/api/forge/modelderivative/jobs", service.translateObject)
 
-	if err := http.ListenAndServe(port, nil); err != nil {
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		log.Fatal(err.Error())
 	}
 
