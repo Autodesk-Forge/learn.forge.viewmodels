@@ -19,20 +19,62 @@ For using this sample, you need an Autodesk developer credentials. Visit the [Fo
 
 ## Run Locally
 
+Before running the sample, you should set the enviroment variables, or laternativelly, see the **Configuation** part of this README for use of config file. 
+
+To set up the environment variables with your client ID & secret:
+
+***Mac OSX/Linux (Terminal)***
+
+```bash
+export FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>
+export FORGE_CLIENT_SECRET=<<YOUR CLIENT SECRET>>
+```    
+
+***Windows (Command Prompt)***
+
+```bash
+set FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>
+set FORGE_CLIENT_SECRET=<<YOUR CLIENT SECRET>>
+```
+
+There are 2 ways to run this sample:
+
+1. Download the go_sample.zip archive appropriate to your OS from [releases](https://github.com/Autodesk-Forge/learn.forge.viewmodels/releases). Unzip it and start the ***sample*** executable from unzipped folder. Open the browser: [http://localhost:3000](http://localhost:3000) to check the sample.
+
+2. Install [Go Programming Language](https://golang.org/).    
+After the Go language is set up, run:
+
+```bash
+go get github.com/autodesk-forge/forge.learning.viewmodels.go
+```
+
+and navigate to `$GOPATH/src/github.com/autodesk-forge/forge.learning.viewmodels.go` and run
+
+```bash
+go run main.go 
+```
+to have app started. Open the browser: [http://localhost:3000](http://localhost:3000) to check the sample.
 
 
-	Open the **web.config** file and adjust the Forge Client ID & Secret. If you plan to deploy to Appharbor, configure the variables (no need to change this web.config file).
+### Note
+If you don't want to setup environment variables, or try with another set of Forge secrets, use the **config.json** file from the sources.
+
+Open the **config.json** file and adjust the Forge Client ID & Secret. 
 	
-	```xml
-	<appSettings>
-	  <add key="FORGE_CLIENT_ID" value="" />
-	  <add key="FORGE_CLIENT_SECRET" value="" />
-	</appSettings>
-	```
-	
-	Compile the solution, Visual Studio should download the NUGET packages ([Autodesk Forge](https://www.nuget.org/packages/Autodesk.Forge/), [RestSharp](https://www.nuget.org/packages/RestSharp) and [Newtonsoft.Json](https://www.nuget.org/packages/newtonsoft.json/))
-	
-	Start the **forgesample** project, the **index.html** is marked as start page. At the webpage, the **New Bucket** blue button allow create new buckets (as of now, minimum input validation is implemented). For any bucket, right-click to upload a file (objects). For demonstration, objects **are not** automatically translated, but right-click on a object and select **Translate**. 
+```json
+{
+  "FORGE_CLIENT_ID": "",
+  "FORGE_CLIENT_SECRET": "",
+  "PORT": "3000"
+}
+```
+If don't change the **config.json** file and leave at least one of them as empty string, the app will read the environment variables ***FORGE_CLIENT_ID*** and ***FORGE_CLIENT_SECRET***, which might be more suitable in case you want to deploy the app on a remote server.
+
+
+## Usage
+
+Open the browser: [http://localhost:3000](http://localhost:3000)
+On the webpage, the **New Bucket** blue button allow create new buckets (as of now, minimum input validation is implemented). For any bucket, right-click to upload a file (objects). For demonstration, objects **are not** automatically translated, but right-click on a object and select **Translate**. 
 
 # License
 
@@ -41,4 +83,5 @@ Please see the [LICENSE](LICENSE) file for full details.
 
 ## Written by
 
-Denis Grigor [@apprentice3d](https://twitter.com/apprentice3d), [Forge Partner Development](http://forge.autodesk.com)
+Denis Grigor [@apprentice3d](https://twitter.com/apprentice3d),   
+[Forge Partner Development](http://forge.autodesk.com)
