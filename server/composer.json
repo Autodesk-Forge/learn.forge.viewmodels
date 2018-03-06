@@ -1,0 +1,6 @@
+{
+    "require": {
+        "autodesk/forge-client": "^1.0",
+        "klein/klein": "^2.1"
+    }
+}
