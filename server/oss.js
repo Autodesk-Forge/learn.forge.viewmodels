@@ -51,8 +51,10 @@ router.get('/api/forge/oss/buckets', function (req, res) {
                 })
                 res.json(list);
             });
-        }).catch(function (err) {
-            res.status(500).end(err);
+        }).catch(function (error) {
+            console.log('Error at Get Buckets:');
+            console.log(error);
+            res.status(500).json(error);
         });
     }
     else {
@@ -71,8 +73,10 @@ router.get('/api/forge/oss/buckets', function (req, res) {
                 })
                 res.json(list);
             });
-        }).catch(function (err) {
-            res.status(500).end(err);
+        }).catch(function (error) {
+            console.log('Error at Get Objects:');
+            console.log(error);
+            res.status(500).json(error);
         });
     }
 });
@@ -87,11 +91,14 @@ router.post('/api/forge/oss/buckets', jsonParser, function (req, res) {
 
         bucketsApi.createBucket(postBuckets, {}, oauth.OAuthClient(), credentials).then(function (buckets) {
             res.status(200).end();
-        }).catch(function (err) {
-            if (err.statusCode && err.statusCode == 409)
+        }).catch(function (error) {
+            if (error.statusCode && error.statusCode == 409)
                 res.status(409).end();
-            else
-                res.status(500).end(err);
+            else {
+                console.log('Error at OSS Create Bucket:');
+                console.log(error);
+                res.status(500).json(error);
+            }
         });
     });
 });
@@ -110,7 +117,9 @@ router.post('/api/forge/oss/objects', upload.single('fileToUpload'), function (r
             objects.uploadObject(bucketKey, req.file.originalname, filecontent.length, filecontent, {}, oauth.OAuthClient(), credentials)
                 .then(function (object) {
                     res.end();
-                }).catch(function (err) {
+                }).catch(function (error) {
+                    console.log('Error at Upload Object:');
+                    console.log(error);
                     res.status(500).end();
                 });
         })

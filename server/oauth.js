@@ -59,6 +59,8 @@ module.exports = {
                     resolve(_cached[cache]);
                 })
                 .catch(function (error) {
+                    console.log('Error at OAuth Authenticate:');
+                    console.log(error);
                     reject(error)
                 });
         })

@@ -52,6 +52,8 @@ router.post('/api/forge/modelderivative/jobs', jsonParser, function (req, res) {
             .then(function (data) {
                 res.status(200).end();
             }).catch(function (e) {
+                console.log('Error at Model Derivative job:');
+                console.log(e);
                 res.status(500).json({ error: e.error.body })
             });
     });
