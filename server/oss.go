@@ -36,7 +36,6 @@ func (service ForgeServices) manageBuckets(writer http.ResponseWriter, request *
 
 		log.Println("Request for creating a bucket with key = ", createBucketRequest.BucketKey)
 
-		//TODO: enable this to work with real data
 		_, err = service.CreateBucket(createBucketRequest.BucketKey, "transient")
 		if err != nil {
 			http.Error(writer, "Could not create bucket: "+err.Error(), http.StatusInternalServerError)
@@ -78,22 +77,35 @@ func (service ForgeServices) manageBuckets(writer http.ResponseWriter, request *
 				return
 			}
 
-			//TODO: parallelize this part: goroutine with accumulating channel.
-			for _, bucket := range bucketList.Items {
-				children := false
-				objectList, err := service.ListObjects(bucket.BucketKey, "", "", "")
-				if err == nil && len(objectList.Items) > 0 {
-					children = true
-				}
 
-				result = append(result, Node{
-					ID:   bucket.BucketKey,
-					Text: bucket.BucketKey,
-					Type: "bucket",
-					Children: children,
-				})
+			nodeChannel := make(chan Node, len(bucketList.Items))
+
+			for _, bucket := range bucketList.Items {
+
+				go func(bucketKey string) {
+
+					children := false
+					objectList, err := service.ListObjects(bucketKey, "", "", "")
+					if err == nil && len(objectList.Items) > 0 {
+						children = true
+					}
+
+					node := Node {
+						ID:   bucketKey,
+						Text: bucketKey,
+						Type: "bucket",
+						Children: children,
+					}
+
+					nodeChannel <- node
+
+				}(bucket.BucketKey)
+
 			}
 
+			for range bucketList.Items {
+				result = append(result, <- nodeChannel)
+			}
 		}
 
 		writer.Header().Add("Content-Type", "application/json")

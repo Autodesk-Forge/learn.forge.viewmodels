@@ -59,7 +59,7 @@ After the Go language is set up, run:
 
 
 Once your app is started, open the browser:
-[http://localhost:3000](http://localhost:3000)    
+[http://localhost:3000](http://localhost:3000)
 On the webpage, the **New Bucket** blue button allow create new buckets (as of now, minimum input validation is implemented). For any bucket, right-click to upload a file (objects). For demonstration, objects **are not** automatically translated, but right-click on a object and select **Translate**. 
 
 # License
