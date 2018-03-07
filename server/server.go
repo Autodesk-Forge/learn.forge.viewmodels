@@ -9,6 +9,13 @@ import (
 	"github.com/apprentice3d/forge-api-go-client/oauth"
 )
 
+// ForgeServices holds reference to all services required in this server
+type ForgeServices struct {
+	oauth.TwoLeggedAuth
+	dm.BucketAPI
+	md.ModelDerivativeAPI
+}
+
 func StartServer(port, clientID, clientSecret string) {
 
 	service := ForgeServices{
@@ -27,7 +34,7 @@ func StartServer(port, clientID, clientSecret string) {
 	http.HandleFunc("/api/forge/oss/objects", service.manageObjects)
 	http.HandleFunc("/api/forge/modelderivative/jobs", service.translateObject)
 
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
+	if err := http.ListenAndServe(port, nil); err != nil {
 		log.Fatal(err.Error())
 	}
 
