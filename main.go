@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	PORT = ":3000"
+	port = ":3000"
 )
 
 func main() {
@@ -20,6 +20,6 @@ func main() {
 		log.Fatal("The FORGE_CLIENT_ID and FORGE_CLIENT_SECRET env vars are not set. \nExiting ...")
 	}
 
-	log.Println("Starting server on port ", PORT)
-	server.StartServer(PORT, clientID, clientSecret)
+	log.Println("Starting server on port ", port)
+	server.StartServer(port, clientID, clientSecret)
 }

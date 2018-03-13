@@ -13,6 +13,7 @@ type BucketCreateInput struct {
 }
 
 
+// Node struct reflects the list element returned when asking the list of the buckets or list of objects in a bucket
 type Node struct {
 	ID       string `json:"id"`
 	Text     string `json:"text"`
@@ -121,7 +122,6 @@ func (service ForgeServices) manageBuckets(writer http.ResponseWriter, request *
 	}
 
 	http.Error(writer, "Unsupported request method", http.StatusMethodNotAllowed)
-	return
 }
 
 

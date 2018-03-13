@@ -45,6 +45,22 @@ There are 2 ways to run this sample:
 Unzip it and start the ***sample*** executable from unzipped folder.
 
 2. Install [Go Programming Language](https://golang.org/).  
+
+Make sure you [$GOPATH](https://github.com/golang/go/wiki/GOPATH) environment variable is set, this is required for first time usage.
+You can use a `/go/` folder under your user folder in case OSX and Linux OS:
+
+```bash
+// MacOS & Linux
+export GOPATH=$HOME/go
+```
+
+In case of Windows, we recommend setting up the `GOPATH` into a simple location like `C:\GOPROJECTS`:
+
+```cmd
+// Windows
+set GOPATH=C:\GOPROJECTS
+```
+
 After the Go language is set up, run:
 
     ```bash

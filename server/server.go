@@ -16,6 +16,7 @@ type ForgeServices struct {
 	md.ModelDerivativeAPI
 }
 
+// StartServer setups the endpoints and starts the http server with endpoints expected by the frontend
 func StartServer(port, clientID, clientSecret string) {
 
 	service := ForgeServices{

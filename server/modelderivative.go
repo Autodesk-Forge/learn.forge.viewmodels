@@ -47,5 +47,4 @@ func (service ForgeServices) translateObject(writer http.ResponseWriter, request
 	//log.Println("Translation result: ", response.Result)
 	log.Printf("Translation result: %s", response.Result)
 	writer.WriteHeader(http.StatusOK)
-	return
 }

@@ -17,7 +17,11 @@ func (service ForgeServices) manageObjects(writer http.ResponseWriter, request *
 	}
 
 	// read the form data
-	request.ParseMultipartForm(32 << 20)
+	err := request.ParseMultipartForm(32 << 20)
+	if err != nil {
+		http.Error(writer, "Could not parse the form: "+err.Error(), http.StatusBadRequest)
+		return
+	}
 	bucketKey := request.FormValue("bucketKey")
 
 	file, header, err := request.FormFile("fileToUpload")
@@ -39,8 +43,5 @@ func (service ForgeServices) manageObjects(writer http.ResponseWriter, request *
 	_, err = service.UploadObject(bucketKey, header.Filename, data)
 	if err != nil {
 		http.Error(writer, "Could not upload file: "+err.Error(), http.StatusBadRequest)
-		return
 	}
-
-	return
 }
