@@ -1,43 +1,46 @@
 <?php
 
 include_once "./server/vendor/autoload.php";
-include_once "./server/apis.php";
+include_once "./server/oauthtoken.php";
+include_once "./server/modelderivative.php";
+include_once "./server/oss.php";
 
 use Klein\Klein;
-use Autodesk\Controller\ForgeServices;
+use Autodesk\ForgeServices\AccessToken;
+use Autodesk\ForgeServices\ModelDerivative;
+use Autodesk\ForgeServices\DataManagement;
 
 $klein = new Klein();
 
 // Get the access token
 $klein->respond('GET', '/api/forge/oauth/token', function () {
-    $forgeServices = new ForgeServices();
-    return $forgeServices->getAccessToken();
+    $accessToken = new AccessToken();
+    return $accessToken->getAccessToken();
 });
 
-// Get all the buckets
+// Get all the buckets & objects
 $klein->respond('GET', '/api/forge/oss/buckets', function () {
-    $forgeServices = new ForgeServices();
-    return $forgeServices->getAllBuckets();
+    $dataManagement = new DataManagement();
+    return $dataManagement->getBucketsAndObjects();
 });
 
 // Create a new bucket
 $klein->respond('POST', '/api/forge/oss/buckets', function(){
-    $forgeServices = new ForgeServices();
-    return $forgeServices->createOneBucket();
+    $dataManagement = new DataManagement();
+    return $dataManagement->createOneBucket();
 });
 
 // Upload a file to a bucket
 $klein->respond('POST', '/api/forge/oss/objects', function () {
-    $forgeServices = new ForgeServices();
-    return $forgeServices->uploadFile();
+    $dataManagement = new DataManagement();
+    return $dataManagement->uploadFile();
 });
 
 // Start translate the model
 $klein->respond('POST', '/api/forge/modelderivative/jobs', function () {
-    $forgeServices = new ForgeServices();
-    return $forgeServices->translateFile();
+    $modelDerivative = new ModelDerivative();
+    return $modelDerivative->translateFile();
 });
-
 
 $klein->dispatch();
 
