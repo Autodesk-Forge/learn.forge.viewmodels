@@ -5,8 +5,9 @@ namespace Autodesk\ForgeServices;
 
 class ForgeConfig{
 
-    public static $forge_id     = "z8fGD7sOz27dGsiG1g3df2nelkXchTAV";
-    public static $forge_secret = "7BxtA1m7Y3NAuhPv";
+    public static $forge_id     = "<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>";
+    public static $forge_secret = "<<YOUR CLIENT SECRET>>";
+
     // public static $forge_id      = getenv("FORGE_CLIENT_ID");
     // public static $forge_secret  = getenv("FROGE_CLIENT_SECRET");
 
