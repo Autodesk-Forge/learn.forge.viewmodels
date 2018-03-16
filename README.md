@@ -1,6 +1,6 @@
 # forge.tutorial.viewmodel.php
 
-[![PHP](https://img.shields.io/packagist/php-v/symfony/symfony.svg)](https://php.org/)
+[![PHP](https://img.shields.io/packagist/php-v/symfony/symfony.svg)](http://www.php.net/)
 ![Platforms](https://img.shields.io/badge/platform-windows%20%7C%20osx%20%7C%20linux-lightgray.svg)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
 
@@ -29,7 +29,18 @@ Clone this project or download it. It's recommended to install [GitHub desktop](
 
     git clone https://github.com/autodesk-forge/forge.learning.viewmodels.php
 
-To run it, install the required packages, set the enviroment variables with your client ID & secret and finally start it. Via command line, navigate to the folder where this repository was cloned and use the following:
+To run it, install the required packages, set the enviroment variables with your client ID & secret and finally start the server from MAMP. 
+
+For Apach: 
+
+For Nginx: add the following co
+
+if (!-e $request_filename) {
+   rewrite  ^(.*)$  /index.php?s=$1  last;
+   break;
+}
+
+Via command line, navigate to the folder where this repository was cloned and use the following:
 
 Mac OSX/Linux (Terminal)
 
@@ -37,15 +48,15 @@ Mac OSX/Linux (Terminal)
     composer install
     export FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>
     export FORGE_CLIENT_SECRET=<<YOUR CLIENT SECRET>>
-    npm start
+    start server from MAMP
 
-Windows (use **Node.js command line** from Start menu)
+Windows (use **command line** from Start menu)
 
     cd server
     composer install
     set FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>
     set FORGE_CLIENT_SECRET=<<YOUR CLIENT SECRET>>
-    npm start
+    start server from MAMP
 
 Open the browser: [http://localhost:3000](http://localhost:3000).
 

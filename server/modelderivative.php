@@ -8,8 +8,6 @@ use Autodesk\Forge\Client\Model\JobPayloadInput;
 use Autodesk\Forge\Client\Model\JobPayloadOutput;
 use Autodesk\Forge\Client\Model\JobPayloadItem;
 
-include_once "oauth.php";
-
 class ModelDerivative
 {
     public function __construct()

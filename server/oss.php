@@ -1,11 +1,8 @@
 <?php
-
 namespace Autodesk\ForgeServices;
 use Autodesk\Forge\Client\Api\BucketsApi;
 use Autodesk\Forge\Client\Model\PostBucketsPayload;
 use Autodesk\Forge\Client\Api\ObjectsApi;
-
-include_once "oauth.php";
 
 class DataManagement
 {

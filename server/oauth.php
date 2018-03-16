@@ -4,8 +4,6 @@ namespace Autodesk\ForgeServices;
 use Autodesk\Auth\Configuration;
 use Autodesk\Auth\OAuth2\TwoLeggedAuth;
 
-include_once "config.php";
-
 class AuthClientTwoLegged{
     private $twoLeggedAuthInternal = NULL;
     private $twoLeggedAuthPublic   = NULL;
@@ -31,7 +29,7 @@ class AuthClientTwoLegged{
     public function getTokenInternal(){
         if($this->twoLeggedAuthInternal != NULL )
             return $this->twoLeggedAuthInternal;
-                
+            
         $this->twoLeggedAuthInternal = new TwoLeggedAuth();
         $this->twoLeggedAuthInternal->setScopes(ForgeConfig::$scopeInternal);
         $this->twoLeggedAuthInternal->fetchToken();
