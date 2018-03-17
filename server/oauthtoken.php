@@ -10,8 +10,6 @@ class AccessToken
 
     public function getAccessToken()
     {
-        var_dump($_SERVER);
-        die;
         global $twoLeggedAuth;
         try{
             $accessToken = $twoLeggedAuth->getTokenInternal();
