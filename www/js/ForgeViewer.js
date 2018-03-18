@@ -42,6 +42,7 @@ function onItemLoadFail(errorCode) {
 function getForgeToken(callback) {
   jQuery.ajax({
     url: '/api/forge/oauth/token',
+    dataType:'json',
     success: function (res) {
       callback(res.access_token, res.expires_in)
     }
