@@ -8,10 +8,8 @@ use Autodesk\Forge\Client\Model\JobPayloadInput;
 use Autodesk\Forge\Client\Model\JobPayloadOutput;
 use Autodesk\Forge\Client\Model\JobPayloadItem;
 
-class ModelDerivative
-{
-    public function __construct()
-    {
+class ModelDerivative{
+    public function __construct(){
         set_time_limit(0);
     }    
 
@@ -46,5 +44,4 @@ class ModelDerivative
             echo 'Exception when calling DerivativesApi->translate: ', $e->getMessage(), PHP_EOL;
         }
     }
-
 }

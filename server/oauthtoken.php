@@ -1,15 +1,12 @@
 <?php
 namespace Autodesk\ForgeServices;
 
-class AccessToken
-{
-    public function __construct()
-    {
+class AccessToken{
+    public function __construct(){
         set_time_limit(0);
     }    
 
-    public function getAccessToken()
-    {
+    public function getAccessToken(){
         global $twoLeggedAuth;
         try{
             $accessToken = $twoLeggedAuth->getTokenInternal();
@@ -22,6 +19,4 @@ class AccessToken
             echo 'Exception when calling twoLeggedAuth->getTokenInternal: ', $e->getMessage(), PHP_EOL;
         }
     }
-
-
 }

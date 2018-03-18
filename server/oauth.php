@@ -5,34 +5,37 @@ use Autodesk\Auth\Configuration;
 use Autodesk\Auth\OAuth2\TwoLeggedAuth;
 
 class AuthClientTwoLegged{
-    private $twoLeggedAuthInternal = NULL;
-    private $twoLeggedAuthPublic   = NULL;
+    private $twoLeggedAuthInternal = null;
+    private $twoLeggedAuthPublic   = null;
     
-    public function __construct( )
-    {
+    public function __construct(){
         set_time_limit(0);
         Configuration::getDefaultConfiguration()
-            ->setClientId(ForgeConfig::$forge_id)
-            ->setClientSecret(ForgeConfig::$forge_secret);
+            ->setClientId(ForgeConfig::getForgeID())
+            ->setClientSecret(ForgeConfig::getForgeSecret());
+
+        $this->createTwoLeggedAuth();
     }    
 
-    public function getTokenPublic(){
-        if($this->twoLeggedAuthPublic != NULL )
-            return $this->twoLeggedAuthPublic;
+    private function createTwoLeggedAuth(){
+        if($this->twoLeggedAuthInternal == null ){
+            $this->twoLeggedAuthInternal = new TwoLeggedAuth();
+            $this->twoLeggedAuthInternal->setScopes(ForgeConfig::getScopeInternal());
+            $this->twoLeggedAuthInternal->fetchToken();
+        }
+        
+        if($this->twoLeggedAuthPublic == null ){
+            $this->twoLeggedAuthPublic = new TwoLeggedAuth();
+            $this->twoLeggedAuthPublic->setScopes(ForgeConfig::getScopePublic());
+            $this->twoLeggedAuthPublic->fetchToken();
+        }
+    }
 
-        $this->twoLeggedAuthPublic = new TwoLeggedAuth();
-        $this->twoLeggedAuthPublic->setScopes(ForgeConfig::$scopePublic);
-        $this->twoLeggedAuthPublic->fetchToken();
+    public function getTokenPublic(){
         return $this->twoLeggedAuthPublic;
     }
 
     public function getTokenInternal(){
-        if($this->twoLeggedAuthInternal != NULL )
-            return $this->twoLeggedAuthInternal;
-            
-        $this->twoLeggedAuthInternal = new TwoLeggedAuth();
-        $this->twoLeggedAuthInternal->setScopes(ForgeConfig::$scopeInternal);
-        $this->twoLeggedAuthInternal->fetchToken();
         return $this->twoLeggedAuthInternal;
     }
 }
