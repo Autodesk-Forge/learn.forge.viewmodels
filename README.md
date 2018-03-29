@@ -70,11 +70,11 @@ If you want to work with Nginx, open nginx.conf, find the server, add the follow
 </code></pre>
 
 ## Troubleshooting
->Note: If Composer command can not be recognized after installation, please move and rename composer.phar to folder /usr/local/bin/ with the following command: 
+Note: If Composer command can not be recognized after installation, please move and rename composer.phar to folder /usr/local/bin/ with the following command: 
 
 >$ mv composer.phar /usr/local/bin/composer 
 
-> Check the detail at [Answer on StackOverflow](https://stackoverflow.com/questions/25018894/osx-bash-composer-command-not-found).
+Check the detail at [Answer on StackOverflow](https://stackoverflow.com/questions/25018894/osx-bash-composer-command-not-found).
 
 
 # License

@@ -10,13 +10,9 @@ class AccessToken{
         global $twoLeggedAuth;
         try{
             $accessToken = $twoLeggedAuth->getTokenPublic();
-            $tokenInfo = array(
-                'access_token'  => $accessToken->getAccessToken(),
-                'expires_in'    => $accessToken->getExpiresIn(),
-            );
-            print_r( json_encode($tokenInfo));
+            print_r( json_encode($accessToken));
         }catch (Exception $e) {
-            echo 'Exception when calling twoLeggedAuth->getTokenInternal: ', $e->getMessage(), PHP_EOL;
+            echo 'Exception when calling twoLeggedAuth->getTokenPublic: ', $e->getMessage(), PHP_EOL;
         }
     }
 }
