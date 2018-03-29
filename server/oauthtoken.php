@@ -9,7 +9,7 @@ class AccessToken{
     public function getAccessToken(){
         global $twoLeggedAuth;
         try{
-            $accessToken = $twoLeggedAuth->getTokenInternal();
+            $accessToken = $twoLeggedAuth->getTokenPublic();
             $tokenInfo = array(
                 'access_token'  => $accessToken->getAccessToken(),
                 'expires_in'    => $accessToken->getExpiresIn(),

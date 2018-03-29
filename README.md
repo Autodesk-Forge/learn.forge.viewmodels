@@ -42,7 +42,7 @@ To run it, follow the steps:
 1. install the required packages by **composer install**;
 2. set the $forge_id & $forge_secret in config.php file with your client ID & secret;
 3. open the Command Palette from VS Code, and run the command **Serve Project With PHP**, it will start PHP server at port 3000.
-4. open your browser and go to `http://localhost:3000/www/index.html`
+4. open your browser and go to `http://localhost:3000`
 
 
 ## Deploy to Heroku
@@ -70,6 +70,11 @@ If you want to work with Nginx, open nginx.conf, find the server, add the follow
 </code></pre>
 
 ## Troubleshooting
+>Note: If Composer command can not be recognized after installation, please move and rename composer.phar to folder /usr/local/bin/ with the following command: 
+
+>$ mv composer.phar /usr/local/bin/composer 
+
+> Check the detail at [Answer on StackOverflow](https://stackoverflow.com/questions/25018894/osx-bash-composer-command-not-found).
 
 
 # License
