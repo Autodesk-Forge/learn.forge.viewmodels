@@ -3,7 +3,6 @@ namespace Autodesk\ForgeServices;
 
 use Autodesk\Auth\Configuration;
 use Autodesk\Auth\OAuth2\TwoLeggedAuth;
-use SuperClosure\Serializer;
 
 class AuthClientTwoLegged{
     private $twoLeggedAuthInternal = null;
