@@ -50,7 +50,7 @@ Define config vars from your Forge App Key with the following command in Heroku:
 * heroku config:set FORGE_CLIENT_ID="YOUR CLIENT ID FROM DEVELOPER PORTAL"
 * heroku config:set FORGE_CLIENT_SECRET="YOUR CLIENT SECRET FROM DEVELOPER PORTAL" 
 
- or change the $forge_id and $forge_secret to your Forge App Key, and deploy to heroku. Open the live demo at [https://forgeviewerphp.herokuapp.com/index.html](https://forgeviewerphp.herokuapp.com/index.html)
+ or change the $forge_id and $forge_secret to your Forge App Key, and deploy to heroku. Open the live demo at [https://forgeviewerphp.herokuapp.com](https://forgeviewerphp.herokuapp.com)
 
 ## Packages used
 
