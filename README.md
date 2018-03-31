@@ -54,7 +54,9 @@ Define config vars from your Forge App Key with the following command in Heroku:
 
 ## Packages used
 
-The [Autodesk Forge](https://packagist.org/packages/autodesk/forge-client) packages is included by default. Some other non-Autodesk packaged are used, including [klein](https://packagist.org/packages/klein/klein) for router, [phpdotenv](https://packagist.org/packages/vlucas/phpdotenv) is used to load environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.
+- The [Autodesk Forge](https://packagist.org/packages/autodesk/forge-client) packages is included by default.
+- The [klein](https://packagist.org/packages/klein/klein) is used for router.
+- The [phpdotenv](https://packagist.org/packages/vlucas/phpdotenv) is used to load environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.
 
 
 
