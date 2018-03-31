@@ -21,10 +21,10 @@ Now we need an IDE to write the code. There are many options, this sample will u
 
 > For this sample, use all default install options.
 
-Next, install the extension of **PHP Server** for Visual Code, this can help serve your current workspace with PHP.
+Next, install the extension of **PHP Server** & **PHP Debug** for Visual Code, this can help debug your PHP project.
 
 - Go to Visual Code extension manager (left side, bottom icon)
-- Type `PHP` and install `PHP Server` plugin made by ***brapifra***.
+- Type `PHP` and install `PHP Server` & `PHP Debug` plugins.
 
 ### Run locally
 
@@ -40,7 +40,7 @@ Clone this project or download it. It's recommended to install [GitHub desktop](
 To run it, follow the steps:
 
 1. install the required packages by **composer install**;
-2. set the $forge_id & $forge_secret in config.php file with your client ID & secret;
+2. rename **.env.example** to **.env**, and set the FORGE_CLIENT_ID & FORGE_CLIENT_SECRET with your Forge client ID & secret;
 3. open the Command Palette from VS Code, and run the command **Serve Project With PHP**, it will start PHP server at port 3000.
 4. open your browser and go to `http://localhost:3000`
 
@@ -50,11 +50,13 @@ Define config vars from your Forge App Key with the following command in Heroku:
 * heroku config:set FORGE_CLIENT_ID="YOUR CLIENT ID FROM DEVELOPER PORTAL"
 * heroku config:set FORGE_CLIENT_SECRET="YOUR CLIENT SECRET FROM DEVELOPER PORTAL" 
 
- or change the $forge_id and $forge_secret to your Forge App Key, and deploy to heroku. Open the live demo at [https://forgeviewerphp.herokuapp.com](https://forgeviewerphp.herokuapp.com)
+ Open the live demo at [https://forgeviewerphp.herokuapp.com](https://forgeviewerphp.herokuapp.com)
 
 ## Packages used
 
-The [Autodesk Forge](https://packagist.org/packages/autodesk/forge-client) packages is included by default. Some other non-Autodesk packaged are used, including [klein](https://packagist.org/packages/klein/klein) for router.
+The [Autodesk Forge](https://packagist.org/packages/autodesk/forge-client) packages is included by default. Some other non-Autodesk packaged are used, including [klein](https://packagist.org/packages/klein/klein) for router, [phpdotenv](https://packagist.org/packages/vlucas/phpdotenv) is used to load environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.
+
+
 
 # Tips & tricks
 
