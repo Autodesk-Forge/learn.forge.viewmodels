@@ -1,0 +1,17 @@
+{
+    "name": "yourcompanyname/forgesample",
+    "description": "a forge sample of PHP",
+    "type": "project",
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "name@example.com"
+        }
+    ],
+    "require": {
+        "autodesk/forge-client": "^1.0",
+        "klein/klein": "^2.1",
+        "vlucas/phpdotenv": "^2.4.0"
+    }  
+}

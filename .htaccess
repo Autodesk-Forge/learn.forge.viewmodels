@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+ RewriteEngine on
+ RewriteBase /
+
+ RewriteCond %{REQUEST_URI} !^/www(.*)$
+ RewriteCond %{REQUEST_URI} ^/$
+ RewriteRule ^(.*)$ /www/index.html [NC,R=301],L]
+
+ RewriteCond %{REQUEST_URI} !^/www(.*)$
+ RewriteCond %{REQUEST_URI} ^.*.(js|css)$
+ RewriteRule ^(.*)$ /www/$1 [NC,R=301],L]
+
+ RewriteCond %{REQUEST_URI} !^/www(.*)$
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteRule ^(.*)$ index.php/$1 [NC,L]
+</IfModule>
