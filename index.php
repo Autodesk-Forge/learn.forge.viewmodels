@@ -44,11 +44,5 @@ $klein->respond('POST', '/api/forge/modelderivative/jobs', function () {
     return $modelDerivative->translateFile();
 });
 
-// Redirect the homepage to www/index.html
-$klein->respond('GET', '/', function ($request, $response, $service) {
-    $service->render('www/index.html');
-    return;
-});
-
 $klein->dispatch();
 
