@@ -1,0 +1,3 @@
+{
+	"python.pythonPath": "${workspaceFolder}/forge/bin/python"
+}
