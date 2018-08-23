@@ -11,9 +11,9 @@ if (config.credentials.client_id == null || config.credentials.client_secret == 
 let app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json({ limit: '50mb' }));
-app.use('/api/forge/oauth', require('./routes/auth'));
+app.use('/api/forge/oauth', require('./routes/oauth'));
 app.use('/api/forge/oss', require('./routes/oss'));
-app.use('/api/forge/modelderivative', require('./routes/jobs'));
+app.use('/api/forge/modelderivative', require('./routes/modelderivative'));
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json(err);
