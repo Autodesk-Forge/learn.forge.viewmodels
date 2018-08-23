@@ -21,6 +21,7 @@ router.get('/buckets', async (req, res, next) => {
     const bucket_name = req.query.id;
     if (!bucket_name || bucket_name === '#') {
         try {
+            // Retrieve buckets from Forge using the [BucketsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/BucketsApi.md#getBuckets)
             const buckets = await new BucketsApi().getBuckets({ limit: 64 }, req.oauth_client, req.oauth_token);
             res.json(buckets.body.items.map((bucket) => {
                 return {
@@ -35,6 +36,7 @@ router.get('/buckets', async (req, res, next) => {
         }
     } else {
         try {
+            // Retrieve objects from Forge using the [ObjectsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/ObjectsApi.md#getObjects)
             const objects = await new ObjectsApi().getObjects(bucket_name, {}, req.oauth_client, req.oauth_token);
             res.json(objects.body.items.map((object) => {
                 return {
@@ -57,6 +59,7 @@ router.post('/buckets', async (req, res, next) => {
     payload.bucketKey = req.body.bucketKey;
     payload.policyKey = 'transient'; // expires in 24h
     try {
+        // Create a bucket using [BucketsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/BucketsApi.md#createBucket).
         await new BucketsApi().createBucket(payload, {}, req.oauth_client, req.oauth_token);
         res.status(200).end();
     } catch(err) {
@@ -73,8 +76,8 @@ router.post('/objects', multer({ dest: 'uploads/' }).single('fileToUpload'), asy
             next(err);
         }
         try {
-            const api = new ObjectsApi()
-            await api.uploadObject(req.body.bucketKey, req.file.originalname, data.length, data, {}, req.oauth_client, req.oauth_token);
+            // Upload an object to bucket using [ObjectsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/ObjectsApi.md#uploadObject).
+            await new ObjectsApi().uploadObject(req.body.bucketKey, req.file.originalname, data.length, data, {}, req.oauth_client, req.oauth_token);
             res.status(200).end();
         } catch(err) {
             next(err);
