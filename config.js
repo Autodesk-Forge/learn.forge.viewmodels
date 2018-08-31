@@ -16,24 +16,18 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////
 
-const path = require('path');
-const express = require('express');
-
-const PORT = process.env.PORT || 3000;
-const config = require('./config');
-if (config.credentials.client_id == null || config.credentials.client_secret == null) {
-    console.error('Missing FORGE_CLIENT_ID or FORGE_CLIENT_SECRET env. variables.');
-    return;
-}
-
-let app = express();
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json({ limit: '50mb' }));
-app.use('/api/forge/oauth', require('./routes/oauth'));
-app.use('/api/forge/oss', require('./routes/oss'));
-app.use('/api/forge/modelderivative', require('./routes/modelderivative'));
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json(err);
-});
-app.listen(PORT, () => { console.log(`Server listening on port ${PORT}`); });
+// Autodesk Forge configuration
+module.exports = {
+    // Set environment variables or hard-code here
+    credentials: {
+        client_id: process.env.FORGE_CLIENT_ID,
+        client_secret: process.env.FORGE_CLIENT_SECRET,
+        callback_url: process.env.FORGE_CALLBACK_URL
+    },
+    scopes: {
+        // Required scopes for the server-side application
+        internal: ['bucket:create', 'bucket:read', 'data:read', 'data:create', 'data:write'],
+        // Required scope for the client-side viewer
+        public: ['viewables:read']
+    }
+};
