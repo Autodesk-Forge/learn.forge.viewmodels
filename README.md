@@ -1,4 +1,4 @@
-# forge.tutorial.viewmodels.net
+# forge.tutorial.viewmodels.net - .NET Framework
 
 ![Platforms](https://img.shields.io/badge/platform-Windows-lightgray.svg)
 ![.NET](https://img.shields.io/badge/.NET-4.6.1-blue.svg)
@@ -17,9 +17,20 @@ This sample is part of the [Learn Forge](http://learnforge.autodesk.io) tutorial
 
 # Setup
 
+## Prerequisites
+
+1. **Forge Account**: Learn how to create a Forge Account, activate subscription and create an app at [this tutorial](http://learnforge.autodesk.io/#/account/). 
+2. **Visual Studio**: Community edition.
+3. **.NET Framework** basic knowledge with C#
+4. **JavaScript** basic knowledge with **jQuery**
+
 For using this sample, you need an Autodesk developer credentials. Visit the [Forge Developer Portal](https://developer.autodesk.com), sign up for an account, then [create an app](https://developer.autodesk.com/myapps/create) that uses Data Management and Model Derivative APIs. For this new app, use `http://localhost:3000/api/forge/callback/oauth` as Callback URL, although is not used on 2-legged flow. Finally take note of the **Client ID** and **Client Secret**.
 
-## Run Locally
+## Running locally
+
+Clone this project or download it (this `net` branch only). It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
+
+    git clone -b net https://github.com/Autodesk-Forge/learn.forge.viewmodels.git
 
 Open the **web.config** file and adjust the Forge Client ID & Secret. If you plan to deploy to Appharbor, configure the variables (no need to change this web.config file).
 
@@ -34,15 +45,18 @@ Compile the solution, Visual Studio should download the NUGET packages ([Autodes
 
 Start the **forgesample** project, the **index.html** is marked as start page. At the webpage, the **New Bucket** blue button allow create new buckets (as of now, minimum input validation is implemented). For any bucket, right-click to upload a file (objects). For demonstration, objects **are not** automatically translated, but right-click on a object and select **Translate**. 
 
+# Further Reading
 
-# Known issues
+Documentation:
 
-The **forgesample** project is adding reference to Newtonsoft.Json library due a dependency from another library (jsTree), but this is not required and cause a conflict of versions. If it happens, you can safely remove this reference (from ASPNET.webapi project).
+- [BIM 360 API](https://developer.autodesk.com/en/docs/bim360/v1/overview/) and [App Provisioning](https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps)
+- [Data Management API](https://developer.autodesk.com/en/docs/data/v2/overview/)
+- [Viewer](https://developer.autodesk.com/en/docs/viewer/v6) 
 
-# License
 
-This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-Please see the [LICENSE](LICENSE) file for full details.
+## License
+
+This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
 ## Written by
 
