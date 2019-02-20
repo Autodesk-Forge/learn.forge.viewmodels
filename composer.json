@@ -12,6 +12,6 @@
     "require": {
         "autodesk/forge-client": "^1.0",
         "klein/klein": "^2.1",
-        "vlucas/phpdotenv": "^2.4.0"
-    }  
+        "vlucas/phpdotenv": "^3.0.0"
+    }
 }

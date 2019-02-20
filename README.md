@@ -39,7 +39,12 @@ Clone this project or download it. It's recommended to install [GitHub desktop](
 
 To run it, follow the steps:
 
-1. install the required packages by **composer install**;
+1. install the required packages:
+
+```
+composer install
+```
+
 2. rename **.env.example** to **.env**, and set the FORGE_CLIENT_ID & FORGE_CLIENT_SECRET with your Forge client ID & secret;
 3. open the Command Palette from VS Code, and run the command **Serve Project With PHP**, it will start PHP server at port 3000.
 4. open your browser and go to `http://localhost:3000`
@@ -48,7 +53,7 @@ To run it, follow the steps:
 ## Deploy to Heroku
 Define config vars from your Forge App Key with the following command in Heroku:
 * heroku config:set FORGE_CLIENT_ID="YOUR CLIENT ID FROM DEVELOPER PORTAL"
-* heroku config:set FORGE_CLIENT_SECRET="YOUR CLIENT SECRET FROM DEVELOPER PORTAL" 
+* heroku config:set FORGE_CLIENT_SECRET="YOUR CLIENT SECRET FROM DEVELOPER PORTAL"
 
  Open the live demo at [https://forgeviewerphp.herokuapp.com](https://forgeviewerphp.herokuapp.com)
 
@@ -62,10 +67,10 @@ Define config vars from your Forge App Key with the following command in Heroku:
 
 # Tips & tricks
 
-We rewrite the url to have a clean url. to config that: 
+We rewrite the url to have a clean url. to config that:
 For Apache, .htaccess is added to do url rewrite.
 
-If you want to work with Nginx, open nginx.conf, find the server, add the following code in server{ location/{ } } 
+If you want to work with Nginx, open nginx.conf, find the server, add the following code in server{ location/{ } }
 <pre><code>
     if (!-e $request_filename) {
         rewrite  ^(.*)$  /index.php?s=$1  last;
@@ -74,12 +79,18 @@ If you want to work with Nginx, open nginx.conf, find the server, add the follow
 </code></pre>
 
 ## Troubleshooting
-Note: If Composer command can not be recognized after installation, please move and rename composer.phar to folder /usr/local/bin/ with the following command: 
+Note: If Composer command can not be recognized after installation, please move and rename composer.phar to folder /usr/local/bin/ with the following command:
 
->$ mv composer.phar /usr/local/bin/composer 
+>$ mv composer.phar /usr/local/bin/composer
 
 Check the detail at [Answer on StackOverflow](https://stackoverflow.com/questions/25018894/osx-bash-composer-command-not-found).
 
+If you run into initialization errors after upgrading your [phpdotenv](https://github.com/vlucas/phpdotenv) to V3, change the loader construction in `./server/config.php` accordingly:
+
+
+```
+$dotenv = Dotenv::create(__DIR__); // change line 13 to this from `$dotenv = new Dotenv(__DIR__);`
+```
 
 # License
 
