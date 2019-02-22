@@ -21,7 +21,7 @@ class ForgeConfig{
       $forge_secret = getenv('FORGE_CLIENT_SECRET');
       if(!$forge_secret){
         // load the environment variable from .env into your application
-        $dotenv = new Dotenv(__DIR__);
+        $dotenv = Dotenv::create(__DIR__);
         $dotenv->load();
         $forge_secret = getenv('FORGE_CLIENT_SECRET');
      }
