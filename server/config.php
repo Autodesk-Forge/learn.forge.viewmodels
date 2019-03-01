@@ -10,7 +10,7 @@ class ForgeConfig{
       $forge_id = getenv('FORGE_CLIENT_ID');
       if(!$forge_id){
         // load the environment variable from .env into your application
-        $dotenv = new Dotenv(__DIR__);
+        $dotenv = Dotenv::create(__DIR__);
         $dotenv->load();
         $forge_id = getenv('FORGE_CLIENT_ID');
      }
@@ -21,7 +21,7 @@ class ForgeConfig{
       $forge_secret = getenv('FORGE_CLIENT_SECRET');
       if(!$forge_secret){
         // load the environment variable from .env into your application
-        $dotenv = new Dotenv(__DIR__);
+        $dotenv = Dotenv::create(__DIR__);
         $dotenv->load();
         $forge_secret = getenv('FORGE_CLIENT_SECRET');
      }
@@ -38,6 +38,6 @@ class ForgeConfig{
       // Will update the scope to viewables:read when #13 of autodesk/forge-client is fixed
       return ['data:read'];
     }
-  
+
 }
 
