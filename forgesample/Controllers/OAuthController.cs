@@ -80,7 +80,7 @@ namespace forgesample.Controllers
     /// <summary>
     /// Reads appsettings from web.config
     /// </summary>
-    private static string GetAppSetting(string settingKey)
+    public static string GetAppSetting(string settingKey)
     {
       return WebConfigurationManager.AppSettings[settingKey];
     }
