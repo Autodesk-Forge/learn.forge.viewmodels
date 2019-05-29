@@ -78,6 +78,8 @@ If you want to work with Nginx, open nginx.conf, find the server, add the follow
     }
 </code></pre>
 
+**Note**: Technically your bucket name is required to be globally unique across the entire platform - to keep things simple with this tutorial your client ID will be prepended by default to your bucket name and in turn masked by the UI so you only have to make sure your bucket name is unique within your current Forge app.
+
 ## Troubleshooting
 Note: If Composer command can not be recognized after installation, please move and rename composer.phar to folder /usr/local/bin/ with the following command:
 

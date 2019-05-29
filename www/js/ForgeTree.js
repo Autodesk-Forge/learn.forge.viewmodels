@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
   prepareAppBucketTree();
   $('#refreshBuckets').click(function () {
     $('#appBuckets').jstree(true).refresh();
@@ -72,7 +72,7 @@ function prepareAppBucketTree() {
           url: 'https://developer.api.autodesk.com/modelderivative/v2/designdata/' + urn + '/manifest',
           headers: { 'Authorization': 'Bearer ' + access_token },
           success: function (res) {
-            if (res.status === 'success') launchViewer(urn);
+            if (res.progress === 'success' || res.progress === 'complete') launchViewer(urn);
             else $("#forgeViewer").html('The translation job still running: ' + res.progress + '. Please try again in a moment.');
           },
           error: function (err) {
