@@ -5,6 +5,7 @@ use Dotenv\Dotenv;
 class ForgeConfig{
     private static $forge_id = null;
     private static $forge_secret = null;
+    public static $prepend_bucketkey = true;
 
     public static function getForgeID(){
       $forge_id = getenv('FORGE_CLIENT_ID');
@@ -40,4 +41,3 @@ class ForgeConfig{
     }
 
 }
-

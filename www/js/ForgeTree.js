@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
   prepareAppBucketTree();
   $('#refreshBuckets').click(function () {
     $('#appBuckets').jstree(true).refresh();
