@@ -4,15 +4,16 @@
 <head>
   <title>Autodesk Forge Tutorial</title>
   <meta charset="utf-8" />
+  <link rel="shortcut icon" href="https://github.com/Autodesk-Forge/learn.forge.viewmodels/raw/master/img/favicon.ico">
   <!-- Common packages: jQuery, Bootstrap, jsTree -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
   <!-- Autodesk Forge Viewer files -->
-  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/style.min.css?v=v6.5" type="text/css">
-  <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/viewer3D.min.js?v=v6.5"></script>
+  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/6.*/style.min.css" type="text/css">
+  <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/6.*/viewer3D.min.js"></script>
   <!-- this project files -->
   <link href="css/main.css" rel="stylesheet" />
   <script src="js/ForgeTree.js"></script>
@@ -68,9 +69,12 @@
           <h4 class="modal-title" id="myModalLabel">Create new bucket</h4>
         </div>
         <div class="modal-body">
-          <input type="text" id="newBucketKey" class="form-control"> For demonstration purpouses, objects (files)
+          <input type="text" id="newBucketKey" class="form-control"> For demonstration purposes, objects (files)
           are NOT automatically translated. After you upload, right click on
-          the object and select "Translate". Note: Technically your bucket name is required to be globally unique across the entire platform - to keep things simple with this tutorial your client ID will be prepended by default to your bucket name and in turn masked by the UI so you only have to make sure your bucket name is unique within your current Forge app.
+          the object and select "Translate". Note: Technically your bucket name is required to be globally unique across
+          the entire platform - to keep things simple with this tutorial your client ID will be prepended by default to
+          your bucket name and in turn masked by the UI so you only have to make sure your bucket name is unique within
+          your current Forge app.
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
