@@ -69,9 +69,12 @@
           <h4 class="modal-title" id="myModalLabel">Create new bucket</h4>
         </div>
         <div class="modal-body">
-          <input type="text" id="newBucketKey" class="form-control"> For demonstration purposes, objects (files) 
+          <input type="text" id="newBucketKey" class="form-control"> For demonstration purposes, objects (files)
           are NOT automatically translated. After you upload, right click on
-          the object and select "Translate".
+          the object and select "Translate". Note: Technically your bucket name is required to be globally unique across
+          the entire platform - to keep things simple with this tutorial your client ID will be prepended by default to
+          your bucket name and in turn masked by the UI so you only have to make sure your bucket name is unique within
+          your current Forge app.
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
