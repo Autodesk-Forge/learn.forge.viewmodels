@@ -10,7 +10,7 @@ The `master` branch contains the client-side UI: `html`, `js` and `css` files. T
 
 - [Nodejs](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/nodejs)
 - [.NET Framework](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/net)
-- [.NET Core](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/net)
+- [.NET Core](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/netcore)
 - [Go](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/go)
 - [PHP](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/php)
 - [Java](//github.com/Autodesk-Forge/learn.forge.viewmodels/tree/java)
