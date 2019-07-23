@@ -31,10 +31,18 @@ Open the browser: [http://localhost:3000](http://localhost:3000).
 
 ## Packages used
 
-The [Autodesk Forge](https://github.com/Autodesk-Forge/forge-api-java-client) packages is included by default. Some other non-Autodesk packaged are used, including [WebServlet](https://docs.oracle.com/javaee/6/api/javax/servlet/annotation/WebServlet.html) and [commons-fileupload](https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload/1.3) for upload file.
+The [Forge JAVA SDK](https://search.maven.org/search?q=a:forge-java-sdk) packages is included by default. Some other non-Autodesk packaged are used, including [WebServlet](https://docs.oracle.com/javaee/6/api/javax/servlet/annotation/WebServlet.html) and [commons-fileupload](https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload/1.3) for upload file.
 
 # Tips & tricks
-
+Maven 3.0 and above deprecated LATEST and RELEASE metaversions ([see this discussion](https://stackoverflow.com/questions/30571/how-do-i-tell-maven-to-use-the-latest-version-of-a-dependency)], if you need latest version of **Forge JAVA SDK**, please check on [Maven Center](https://search.maven.org/search?q=a:forge-java-sdk) and update with the specific version number accordingly. 
+  ```
+    <dependency>
+            <groupId>com.autodesk</groupId>
+            <artifactId>forge-java-sdk</artifactId> 
+            <version> input the latest version if needed </version>
+    </dependency>
+  ```
+Or, get the [source repository of JAVA SDK ](https://github.com/Autodesk-Forge/forge-api-java-client) and integrate with your project.
 
 ## Troubleshooting
 
