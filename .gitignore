@@ -1,2 +1,4 @@
 
 *.class
+.settings/org.eclipse.core.resources.prefs
+.DS_Store
