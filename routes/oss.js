@@ -56,8 +56,9 @@ router.get('/buckets', async (req, res, next) => {
         }
     } else {
         try {
-            // Retrieve objects from Forge using the [ObjectsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/ObjectsApi.md#getObjects)
-            const objects = await new ObjectsApi().getObjects(bucket_name, {}, req.oauth_client, req.oauth_token);
+            // Retrieve first 100 objects from Forge using the [ObjectsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/ObjectsApi.md#getObjects)
+            // Note: if there's more objects in the bucket, call the getObjects method in a loop, providing different 'startAt' params
+            const objects = await new ObjectsApi().getObjects(bucket_name, { limit: 100 }, req.oauth_client, req.oauth_token);
             res.json(objects.body.items.map((object) => {
                 return {
                     id: Buffer.from(object.objectId).toString('base64'),
