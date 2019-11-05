@@ -12,8 +12,8 @@ namespace forgeSample.Controllers
     [ApiController]
     public class OSSController : ControllerBase
     {
-        private IHostingEnvironment _env;
-        public OSSController(IHostingEnvironment env) { _env = env; }
+        private IWebHostEnvironment _env;
+        public OSSController(IWebHostEnvironment env) { _env = env; }
         public string ClientId { get { return OAuthController.GetAppSetting("FORGE_CLIENT_ID").ToLower(); } }
 
         /// <summary>
@@ -104,14 +104,11 @@ namespace forgeSample.Controllers
         [Route("api/forge/oss/objects")]
         public async Task<dynamic> UploadObject([FromForm]UploadFile input)
         {
-
             // save the file on the server
             var fileSavePath = Path.Combine(_env.ContentRootPath, input.fileToUpload.FileName);
-
             using (var stream = new FileStream(fileSavePath, FileMode.Create))
-            {
                 await input.fileToUpload.CopyToAsync(stream);
-            }
+
 
             // get the bucket...
             dynamic oauth = await OAuthController.GetInternalAsync();
