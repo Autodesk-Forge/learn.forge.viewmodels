@@ -40,8 +40,9 @@ router.get('/buckets', async (req, res, next) => {
     const bucket_name = req.query.id;
     if (!bucket_name || bucket_name === '#') {
         try {
-            // Retrieve buckets from Forge using the [BucketsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/BucketsApi.md#getBuckets)
-            const buckets = await new BucketsApi().getBuckets({ limit: 64 }, req.oauth_client, req.oauth_token);
+            // Retrieve up to 100 buckets from Forge using the [BucketsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/BucketsApi.md#getBuckets)
+            // Note: if there's more buckets, you should call the getBucket method in a loop, providing different 'startAt' params
+            const buckets = await new BucketsApi().getBuckets({ limit: 100 }, req.oauth_client, req.oauth_token);
             res.json(buckets.body.items.map((bucket) => {
                 return {
                     id: bucket.bucketKey,
@@ -56,8 +57,9 @@ router.get('/buckets', async (req, res, next) => {
         }
     } else {
         try {
-            // Retrieve objects from Forge using the [ObjectsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/ObjectsApi.md#getObjects)
-            const objects = await new ObjectsApi().getObjects(bucket_name, {}, req.oauth_client, req.oauth_token);
+            // Retrieve up to 100 objects from Forge using the [ObjectsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/ObjectsApi.md#getObjects)
+            // Note: if there's more objects in the bucket, you should call the getObjects method in a loop, providing different 'startAt' params
+            const objects = await new ObjectsApi().getObjects(bucket_name, { limit: 100 }, req.oauth_client, req.oauth_token);
             res.json(objects.body.items.map((object) => {
                 return {
                     id: Buffer.from(object.objectId).toString('base64'),
