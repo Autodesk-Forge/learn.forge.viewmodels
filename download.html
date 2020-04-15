@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+Downloading ...
+</body>
+<script>
+const url = new URL(window.location.href);
+const durn = url.searchParams.get('durn');
+const urn = url.searchParams.get('urn');
+const filename = durn.split('/').pop();
+//const isArchive = ['svf','f2d','f3d'].includes(filename.split('.').pop());
+fetch(`https://developer.api.autodesk.com/derivativeservice/v2/designdata/${urn}/manifest/${durn}`,{headers:{Authorization:'Bearer '+url.searchParams.get('token')}}).then(res=>res.blob()).then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        }).catch(err=>{alert('Error'+err.message||err);console.log(err)})
+</script>
+</html>
