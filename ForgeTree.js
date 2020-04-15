@@ -220,7 +220,7 @@ function translateObject(node) {
 window.download=download;
 function download(urn, durn){
   if(urn&&durn){
-  window.open(`${window.sbServerless?`/download.html?token=${encodeURIComponent(window.sbAccessToken)}&`:'/api/forge/modelderivative/download?'}urn=${urn}&durn=${encodeURIComponent(durn)}`);
+  window.open(`${window.sbServerless?`download.html?token=${encodeURIComponent(window.sbAccessToken)}&`:'/api/forge/modelderivative/download?'}urn=${urn}&durn=${encodeURIComponent(durn)}`);
 }
 }
 
