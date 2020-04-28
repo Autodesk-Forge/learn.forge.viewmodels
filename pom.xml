@@ -211,6 +211,11 @@
 	 <artifactId>javax.servlet-api</artifactId>
 	 <version>3.1.0</version>
     </dependency>
+    <dependency>
+	 <groupId>org.codehaus.jettison</groupId>
+	 <artifactId>jettison</artifactId>
+	 <version>1.4.1</version>
+    </dependency>
   </dependencies>
  
   <properties>
