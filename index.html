@@ -1,39 +1,48 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
   <title>Autodesk Forge Tutorial</title>
-  <meta charset="utf-8" />
-  <link rel="shortcut icon" href="https://github.com/Autodesk-Forge/learn.forge.viewmodels/raw/master/img/favicon.ico">
-  <!-- Common packages: jQuery, Bootstrap, jsTree -->
+  <meta charset="utf-8" >
+  <link rel="shortcut icon" href="https://github.com/Autodesk-Forge/learn.forge.viewmodels/raw/master/img/favicon.ico" />
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css"  />
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
-  <!-- Autodesk Forge Viewer files -->
-  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
+
+
+  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css" />
   <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
-  <!-- this project files -->
-  <link href="css/main.css" rel="stylesheet" />
-  <script src="js/ForgeTree.js"></script>
-  <script src="js/ForgeViewer.js"></script>
-</head>
+
+
+  <link rel="stylesheet" href="main.css" />
+  <script src="./jsonviewer.js"></script>
+  <script src="./layx.js"></script>
+  <script src="./settings.js"></script>
+  <script src="./ForgeViewer.js"></script>
+  <script src="./ForgeTree.js"></script></head>
 
 <body>
-  <!-- Fixed navbar by Bootstrap: https://getbootstrap.com/examples/navbar-fixed-top/ -->
+
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-      <ul class="nav navbar-nav left">
+      <ul class="nav navbar-nav navbar-left">
         <li>
           <a href="http://developer.autodesk.com" target="_blank">
-            <img alt="Autodesk Forge" src="//developer.static.autodesk.com/images/logo_forge-2-line.png" height="20">
+            <img alt="Autodesk Forge" src="//developer.static.autodesk.com/images/logo_forge-2-line.png" height="20" />
           </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" style='display:none' id='accessTokenControls'>
+        <li>
+          <button style='margin:5px' type="button" class="btn btn-default" onclick="$('#accessTokenDialog').modal('toggle')">Authorize</button>
         </li>
       </ul>
     </div>
   </nav>
-  <!-- End of navbar -->
+
   <div class="container-fluid fill">
     <div class="row fill">
       <div class="col-sm-4 fill">
@@ -41,9 +50,23 @@
           <div class="panel-heading" data-toggle="tooltip">
             Buckets &amp; Objects
             <span id="refreshBuckets" class="glyphicon glyphicon-refresh" style="cursor: pointer"></span>
-            <button class="btn btn-xs btn-info" style="float: right" id="showFormCreateBucket" data-toggle="modal" data-target="#createBucketModal">
-              <span class="glyphicon glyphicon-folder-close"></span> New bucket
+            <button class="btn btn-xs btn-info" style="float: right;margin-left: 2px;" id="showFormCreateBucket" data-toggle="modal" data-target="#createBucketModal">
+              New Bucket
             </button>
+            <button class="btn btn-xs btn-info" style="float: right;margin-left: 2px;" id="showFormCreateBucket" data-toggle="modal" onclick='translateObject(window.currentNode)'>
+              Translate
+            </button>
+
+            <div class="dropdown" id='channels' style="float: right;display:none" >
+  <button style="line-height: 10px"  class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span>Channel</span>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+  </ul>
+</div>
+
           </div>
           <div id="appBuckets">
             tree here
@@ -51,14 +74,51 @@
         </div>
       </div>
       <div class="col-sm-8 fill">
-        <div id="forgeViewer"></div>
+        <div id='loading' class="progress"  style='display:none'>
+<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+ Loading ...
+</div>
+</div>
+        <div id="manifest" style='display:none'>
+          <div class="panel panel-default">
+  <div class="panel-body">
+
+          <div id="incomplete" class='component'>
+            Translation is incomplete (wait and click on the node again to update) or has failed (try again or find help) ...
+          </div>
+          <div id="controls" class='component'>
+            <div class="dropdown" id='derivatives' style='float:left;margin-right: 4px;'>
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style='text-overflow:ellipsis;max-width:45vw;overflow:hidden'>
+    <span>Derivatives</span>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+  </ul>
+</div>
+            <button type="button" class="btn btn-default" onclick='download(window.currentURN,window.currentDURN)'>Download</button>
+            <button type="button" class="btn btn-default component" onclick='launchViewer(window.currentURN)' id='launchViewer'>Launch Viewer</button>
+          </div>
+
+        </div>
+      </div>
+      <div id="json" class='component'>
+      </div>
+        </div>
+
+<div id='initial'  class='component'>
+Create a bucket or select a node to begin ...
+</div>
+        </div>
       </div>
     </div>
+  <div id='forgeViewer'>
+    <div></div>
   </div>
   <form id="uploadFile" method='post' enctype="multipart/form-data">
-    <input id="hiddenUploadField" type="file" name="theFile" style="visibility:hidden" />
+    <input id="hiddenUploadField" type="file" name="theFile" style="visibility:hidden"  />
   </form>
-  <!-- Modal Create Bucket -->
+
   <div class="modal fade" id="createBucketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -69,7 +129,7 @@
           <h4 class="modal-title" id="myModalLabel">Create new bucket</h4>
         </div>
         <div class="modal-body">
-          <input type="text" id="newBucketKey" class="form-control"> For demonstration purposes, objects (files)
+          <input type="text" id="newBucketKey" class="form-control" /> For demonstration purposes, objects (files)
           are NOT automatically translated. After you upload, right click on
           the object and select "Translate". Note: Technically your bucket name is required to be globally unique across
           the entire platform - to keep things simple with this tutorial your client ID will be prepended by default to
@@ -83,6 +143,48 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" tabindex="-1" role="dialog" id='accessTokenDialog'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Authorization</h4>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-warning" role="alert">Disclaimer: To be able to use this Serverless Forge sample app you'd need to <a href='https://forge.autodesk.com/developer/start-now/signup'>sign up for Autodesk Forge</a> and provide a valid access token to the form below - it's strongly advised to follow the instructions <a href='https://forge.autodesk.com/developer/learn/twolegged-auth/overview'>here</a> to obtain a token using the tools/scripts/code of your choice. Should you choose to fill in the client ID and secret below you are advised that all provided information would not be processed, stored, relayed or exposed to any application, service or proxy other than Forge itself - since this sample is completely "Serverless", all communication would strictly occur between your browser and the Forge services directly, without proceeding through a backend or proxy of any kind in order to protect its confidentiality and minimize/prevent exposure to third parties...</div>
+        <form id='accessTokenForm' action='https://developer.api.autodesk.com/authentication/v1/authenticate' target='_blank'  method="POST" enctype="application/x-www-form-urlencoded">
+        <div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">Client Key</span>
+  <input type="text" class="form-control" id='clientIdInput' name='client_id' aria-describedby="basic-addon1" />
+</div>
+
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon2">Client Secret</span>
+  <input class="form-control"  type="password" name='client_secret' aria-describedby="basic-addon2" />
+</div>
+<div class="input-group" style='display:none'>
+  <input type="text" class="form-control" name='scope' value="data:read data:write data:create bucket:read bucket:create"  />
+</div>
+<div class="input-group" style='display:none'>
+  <input type="text" class="form-control" name='grant_type' value='client_credentials' aria-describedby="basic-addon1" />
+</div>
+</form>
+<div class="input-group">
+  <span class="input-group-addon">Token</span>
+  <input type="text" class="form-control" placeholder="Fill in access token from new window after submitting ..." id='accessTokenInput' aria-describedby="basic-addon1" />
+  <div class="input-group-btn">
+    <button type="button" class="btn btn-default" onclick="$('#accessTokenDialog').modal('toggle');window.sbClientId=$('#clientIdInput').val();window.sbAccessToken=$('#accessTokenInput').val();initTree()">Save</button>
+  </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick='window.open("http://tiny.cc/dbgmmz")'>Help</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="$('#accessTokenForm').submit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>
