@@ -6,7 +6,7 @@ This sample is part of the [Learn Forge](http://learnforge.autodesk.io) tutorial
 
 # Live Demo
 
-https://autodesk-forge.github.io/learn.forge.viewmodels/
+https://autodesk-forge.github.io/learn.forge.viewmodels/ ([Demo Screencast](https://tiny.cc/dbgmmz))
 
 ### Languages
 
