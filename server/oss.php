@@ -50,7 +50,8 @@ class DataManagement{
                  $bucketlist = array();
                  for($i=0; $i< $bucketsLength; $i++){
                      $cbkey = $buckets[$i]['bucketKey'];
-                     $cbtext = ForgeConfig::$prepend_bucketkey&&strpos($cbkey, strtolower(ForgeConfig::getForgeID())) === 0? end(explode('_', $cbkey)):$cbkey;
+                     $exploded = explode('_', $cbkey);
+                     $cbtext = ForgeConfig::$prepend_bucketkey&&strpos($cbkey, strtolower(ForgeConfig::getForgeID())) === 0? end($exploded):$cbkey;
                      $bucketInfo = array('id'=>$cbkey,
                                          'text'=> $cbtext,
                                          'type'=>'bucket',
@@ -104,12 +105,13 @@ class DataManagement{
           $fileToUpload    = $file['fileToUpload'];
           $filePath = $fileToUpload['tmp_name'];
           $content_length = filesize($filePath);
+          $file_content = file_get_contents($filePath);
 
           // $fileRead = fread($filePath, $content_length);
 
           try {
 
-             $result = $apiInstance->uploadObject($bucket_key, $fileToUpload['name'], $content_length, fopen($filePath,'r+') );
+             $result = $apiInstance->uploadObject($bucket_key, $fileToUpload['name'], $content_length, $file_content);
               print_r($result);
           } catch (Exception $e) {
               echo 'Exception when calling ObjectsApi->uploadObject: ', $e->getMessage(), PHP_EOL;
