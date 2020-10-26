@@ -78,7 +78,13 @@ router.get('/buckets', async (req, res, next) => {
 // Request body must be a valid JSON in the form of { "bucketKey": "<new_bucket_name>" }.
 router.post('/buckets', async (req, res, next) => {
     let payload = new PostBucketsPayload();
-    payload.bucketKey = config.credentials.client_id.toLowerCase() + '-' + req.body.bucketKey;
+
+    // valid bucket key can only contain: -_.a-z0-9
+    // reference: https://forge.autodesk.com/en/docs/data/v2/reference/http/buckets-POST/
+    let bucketKey = req.body.bucketKey.toLowerCase().replace(/[^-_\.a-z0-9]/g, "_");
+
+    payload.bucketKey = config.credentials.client_id.toLowerCase() + '-' + bucketKey;
+
     payload.policyKey = 'transient'; // expires in 24h
     try {
         // Create a bucket using [BucketsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/BucketsApi.md#createBucket).
@@ -98,6 +104,7 @@ router.post('/objects', multer({ dest: 'uploads/' }).single('fileToUpload'), asy
             next(err);
         }
         try {
+            console.log("uploading to", req.body.bucketKey)
             // Upload an object to bucket using [ObjectsApi](https://github.com/Autodesk-Forge/forge-api-nodejs-client/blob/master/docs/ObjectsApi.md#uploadObject).
             await new ObjectsApi().uploadObject(req.body.bucketKey, req.file.originalname, data.length, data, {}, req.oauth_client, req.oauth_token);
             res.status(200).end();
