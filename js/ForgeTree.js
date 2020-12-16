@@ -68,7 +68,7 @@ function createNewBucket() {
     }
   else
   {
-    alert('Wrong  bucket key format! Please reEnter correct format, valid bucket key can only contain: -_.a-z0-9');
+    alert('Wrong  bucketKey format! Please reEnter correct format, valid bucket key can only contain: -_.a-z0-9');
   }
   jQuery.post({
     url: '/api/forge/oss/buckets',
