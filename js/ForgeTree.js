@@ -60,6 +60,16 @@ $(document).ready(function () {
 function createNewBucket() {
   var bucketKey = $('#newBucketKey').val();
   var policyKey = $('#newBucketPolicyKey').val();
+  // valid bucket key can only contain: -_.a-z0-9
+  // reference: https://forge.autodesk.com/en/docs/data/v2/reference/http/buckets-POST/
+  var reg = new RegExp(/[^-_\.a-z0-9]/g);
+  if (!reg.test(bucketKey)) 
+  {
+    }
+  else
+  {
+    alert('Wrong  bucket key format! Please reEnter correct format, valid bucket key can only contain: -_.a-z0-9');
+  }
   jQuery.post({
     url: '/api/forge/oss/buckets',
     contentType: 'application/json',
