@@ -68,6 +68,7 @@ function createNewBucket() {
 
   if (reg.test(bucketKey)) {
     alert('Invalid bucketKey format! Please reEnter correct format, valid bucket key can only contain: -_.a-z0-9');
+    return;
   }
     
   jQuery.post({
