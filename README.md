@@ -1,4 +1,4 @@
-# forge.tutorial.viewmodels (Java)
+# learn.forge.viewmodels (Java)
 
 [![JDK8](https://img.shields.io/badge/JDK-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
 [![Apache Tomcat](https://img.shields.io/badge/Tomcat-9.0-yellow.svg)](https://tomcat.apache.org/download-90.cgi)
