@@ -1,4 +1,4 @@
-# forge.tutorial.viewmodels.nodejs
+# forge.tutorial.viewmodels (Java)
 
 [![JDK8](https://img.shields.io/badge/JDK-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
 [![Apache Tomcat](https://img.shields.io/badge/Tomcat-9.0-yellow.svg)](https://tomcat.apache.org/download-90.cgi)
@@ -23,7 +23,7 @@ For using this sample, you need an Autodesk developer credentials. Visit the [Fo
 
 Clone this project or download it. It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
-    git clone -b java https://github.com/autodesk-forge/forge.learning.viewmodels
+    git clone -b java https://github.com/Autodesk-Forge/learn.forge.viewmodels
 
 To run it, install the required packages, set the enviroment variables with your client ID & secret (or input manually to [config.java](/src/main/java/config.java). In [Eclipse](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/oxygen3), right click project, locate [Run As], then [Maven Install]. And follow the steps to [configure the server](http://learnforge.autodesk.io/#/environment/rundebug/java) and finally start it. 
 
