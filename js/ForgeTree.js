@@ -60,6 +60,13 @@ $(document).ready(function () {
 function createNewBucket() {
   var bucketKey = $('#newBucketKey').val();
   var policyKey = $('#newBucketPolicyKey').val();
+
+  const regex = /^[\-_.a-z0-9]{3,128}$/g;
+  if (!bucketKey.match(regex)) {
+      alert('The bucket name can only contain characters -_.a-z0-9 and it must be between 3 and 128 characters long.');
+      return;
+  }
+
   jQuery.post({
     url: '/api/forge/oss/buckets',
     contentType: 'application/json',
