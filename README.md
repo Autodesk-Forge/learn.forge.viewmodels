@@ -1,4 +1,4 @@
-# forge.tutorial.viewmodels.net - .NET Framework
+# learn.forge.viewmodels (.NET)
 
 ![Platforms](https://img.shields.io/badge/platform-Windows-lightgray.svg)
 ![.NET](https://img.shields.io/badge/.NET-4.6.1-blue.svg)
