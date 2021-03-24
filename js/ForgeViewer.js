@@ -21,8 +21,8 @@ function onDocumentLoadSuccess(doc) {
   });
 }
 
-function onDocumentLoadFailure(viewerErrorCode) {
-  console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
+function onDocumentLoadFailure(viewerErrorCode, viewerErrorMsg) {
+  console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode + '\n- errorMessage:' + viewerErrorMsg);
 }
 
 function getForgeToken(callback) {
