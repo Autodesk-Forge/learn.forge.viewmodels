@@ -1,4 +1,4 @@
-# forge.tutorial.viewmodels.nodejs
+# learn.forge.viewmodels (Node.js)
 
 ![Node.js](https://img.shields.io/badge/node-%3E%3D%2010.0.0-brightgreen.svg)
 ![Platforms](https://img.shields.io/badge/platform-windows%20%7C%20osx%20%7C%20linux-lightgray.svg)
@@ -24,8 +24,7 @@ Install [NodeJS](https://nodejs.org).
 
 Clone this project or download it. It's recommended to install [GitHub Desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
-    git clone https://github.com/autodesk-forge/forge.learning.viewmodels
-    git checkout nodejs
+    git clone -b nodejs https://github.com/Autodesk-Forge/learn.forge.viewmodels.git
 
 To run it, install the required packages, set the enviroment variables with your client ID & Secret and finally start it. Via command line, navigate to the folder where this repository was cloned to and use the following commands:
 

@@ -30,16 +30,16 @@ function getClient(scopes) {
     return new AuthClientTwoLegged(client_id, client_secret, scopes || config.scopes.internal);
 }
 
-let cache = {};
+let cache = new Map();
 async function getToken(scopes) {
     const key = scopes.join('+');
-    if (cache[key]) {
-        return cache[key];
+    if (cache.has(key) && cache.get(key).expires_at > Date.now()) {
+        return cache.get(key);
     }
     const client = getClient(scopes);
     let credentials = await client.authenticate();
-    cache[key] = credentials;
-    setTimeout(() => { delete cache[key]; }, credentials.expires_in * 1000);
+    credentials.expires_at = Date.now() + credentials.expires_in * 1000;
+    cache.set(key, credentials);
     return credentials;
 }
 
