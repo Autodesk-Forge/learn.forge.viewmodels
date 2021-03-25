@@ -7,6 +7,7 @@ yarn-error.log*
 
 # multer temp upload folder
 tmp/
+uploads/
 
 # Runtime data
 pids
