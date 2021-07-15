@@ -1,48 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1">
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-    <servlet>
-        <servlet-name>oauthtoken</servlet-name>
-        <servlet-class>oauthtoken</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>oauthtoken</servlet-name>  
-        <url-pattern>/api/forge/oauth/token</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>oss</servlet-name>
-        <servlet-class>oss</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>oss</servlet-name>
-        <url-pattern>/api/forge/oss/buckets</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>modelderivative</servlet-name>
-        <servlet-class>modelderivative</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>modelderivative</servlet-name>
-        <url-pattern>/api/forge/modelderivative/jobs</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ossuploads</servlet-name>
-        <servlet-class>ossuploads</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>ossuploads</servlet-name>
-        <url-pattern>/api/forge/oss/objects</url-pattern>
-    </servlet-mapping>
-
-
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
 </web-app>
