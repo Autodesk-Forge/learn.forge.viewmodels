@@ -42,7 +42,8 @@ public class oss extends HttpServlet {
 			if (id.equals("#")) {// root
 				BucketsApi bucketsApi = new BucketsApi();
 
-				ApiResponse<Buckets> buckets = bucketsApi.getBuckets("us", 100, "abc", forgeOAuth,
+				//replace the first param with other values if it is other region, such as 'emea'
+				ApiResponse<Buckets> buckets = bucketsApi.getBuckets("us", 100, null, forgeOAuth,
 						forgeOAuth.getCredentials());
 
 				JSONArray bucketsArray = new JSONArray();
