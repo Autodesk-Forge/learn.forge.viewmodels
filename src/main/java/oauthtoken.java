@@ -1,3 +1,5 @@
+package forgesample;
+
 import org.codehaus.jettison.json.JSONObject;
 import org.joda.time.DateTime;
 
@@ -12,8 +14,11 @@ import java.sql.Date;
 
 import com.autodesk.client.auth.OAuth2TwoLegged;
 
-@WebServlet({ "/oauthtoken" })
+@WebServlet(name = "oauthtoken", 
+			urlPatterns = {"/api/forge/oauth/token", "/oauthtoken"})
 public class oauthtoken extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
 
 	public oauthtoken() {
 	}

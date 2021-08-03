@@ -1,3 +1,5 @@
+package forgesample;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -10,14 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-import com.autodesk.client.auth.OAuth2TwoLegged;  
+import com.autodesk.client.auth.OAuth2TwoLegged; 
 import com.autodesk.client.ApiException;
 import com.autodesk.client.ApiResponse;
 import com.autodesk.client.api.*;
 import com.autodesk.client.model.*;
 
-@WebServlet({ "/modelderivative" })
+@WebServlet(name = "modelderivative", 
+			urlPatterns = {"/api/forge/modelderivative/jobs", "/modelderivative"})
 public class modelderivative extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
 
 	public modelderivative() {
 	}

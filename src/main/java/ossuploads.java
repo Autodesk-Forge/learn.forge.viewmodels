@@ -1,3 +1,5 @@
+package forgesample;
+
 import java.io.*;
 import java.util.Iterator;
 import java.util.List;
@@ -13,14 +15,19 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.autodesk.client.auth.OAuth2TwoLegged;  
+import com.autodesk.client.auth.OAuth2TwoLegged; 
+
 import com.autodesk.client.ApiException;
 import com.autodesk.client.ApiResponse;
 import com.autodesk.client.api.ObjectsApi;
 import com.autodesk.client.model.ObjectDetails;
 
-@WebServlet({ "/ossuploads" })
+
+@WebServlet(name = "ossuploads", 
+			urlPatterns = {"/api/forge/oss/objects", "/ossuploads"})
 public class ossuploads extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
 
 	public ossuploads() {
 	}

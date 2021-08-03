@@ -1,3 +1,5 @@
+package forgesample;
+
 import java.io.*;
 
 import javax.servlet.ServletException;
@@ -14,8 +16,11 @@ import com.autodesk.client.api.*;
 import com.autodesk.client.model.*;
 
 
-@WebServlet({ "/oss" })
+@WebServlet(name = "oss", 
+			urlPatterns = {"/api/forge/oss/buckets", "/oss"})
 public class oss extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
 
 	public oss() {
 	}
@@ -37,6 +42,7 @@ public class oss extends HttpServlet {
 			if (id.equals("#")) {// root
 				BucketsApi bucketsApi = new BucketsApi();
 
+				//replace the first param with other values if it is other region, such as 'emea'
 				ApiResponse<Buckets> buckets = bucketsApi.getBuckets("us", 100, null, forgeOAuth,
 						forgeOAuth.getCredentials());
 
