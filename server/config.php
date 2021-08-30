@@ -5,27 +5,27 @@ use Dotenv\Dotenv;
 class ForgeConfig{
     private static $forge_id = null;
     private static $forge_secret = null;
-    public static $prepend_bucketkey = true;
+    public static $prepend_bucketkey = true; //toggle client ID prefix to avoid conflict with existing buckets
 
     public static function getForgeID(){
-      $forge_id = getenv('FORGE_CLIENT_ID');
-      if(!$forge_id){
+      $forge_id = '';
+      if(!array_key_exists('FORGE_CLIENT_ID', $_ENV)){
         // load the environment variable from .env into your application
-        $dotenv = Dotenv::create(__DIR__);
+        $dotenv = Dotenv::createImmutable(__DIR__);
         $dotenv->load();
-        $forge_id = getenv('FORGE_CLIENT_ID');
-     }
+      }
+      $forge_id = $_ENV['FORGE_CLIENT_ID'];
       return $forge_id;
     }
 
     public static function getForgeSecret(){
-      $forge_secret = getenv('FORGE_CLIENT_SECRET');
-      if(!$forge_secret){
+      $forge_secret = '';
+      if(!array_key_exists('FORGE_CLIENT_SECRET', $_ENV)){
         // load the environment variable from .env into your application
-        $dotenv = Dotenv::create(__DIR__);
+        $dotenv = Dotenv::createImmutable(__DIR__);
         $dotenv->load();
-        $forge_secret = getenv('FORGE_CLIENT_SECRET');
-     }
+      }
+      $forge_secret = $_ENV['FORGE_CLIENT_SECRET'];
       return $forge_secret;
     }
 
