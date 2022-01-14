@@ -27,7 +27,7 @@ environment variables:
 ```bash
 export FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM DEVELOPER PORTAL>>
 export FORGE_CLIENT_SECRET=<<YOUR CLIENT SECRET>>
-```    
+```
 
 ***Windows (Command Prompt)***
 
@@ -41,10 +41,10 @@ set FORGE_CLIENT_SECRET=<<YOUR CLIENT SECRET>>
 There are 2 ways to run this sample:
 
 1. Download the go_sample.zip archive appropriate to your OS from
-[releases](https://github.com/Autodesk-Forge/learn.forge.viewmodels/releases).  
+[releases](https://github.com/Autodesk-Forge/learn.forge.viewmodels/releases).
 Unzip it and start the ***sample*** executable from unzipped folder.
 
-2. Install [Go Programming Language](https://golang.org/).  
+2. Install [Go Programming Language](https://golang.org/).
 
 Make sure you [$GOPATH](https://github.com/golang/go/wiki/GOPATH) environment variable is set, this is required for first time usage.
 You can use a `/go/` folder under your user folder in case OSX and Linux OS:
@@ -63,20 +63,20 @@ set GOPATH=C:\GOPROJECTS
 
 After the Go language is set up, run:
 
-    ```bash
-    go get github.com/autodesk-forge/forge.learning.viewmodels.go
-    ```
+```bash
+go get github.com/autodesk-forge/forge.learning.viewmodels.go
+```
 
-    and navigate to `$GOPATH/src/github.com/autodesk-forge/forge.learning.viewmodels.go` and run
+and navigate to `$GOPATH/src/github.com/autodesk-forge/forge.learning.viewmodels.go` and run
 
-    ```bash
-    go run main.go 
-    ```
+```bash
+go run main.go
+```
 
 
 Once your app is started, open the browser:
 [http://localhost:3000](http://localhost:3000)
-On the webpage, the **New Bucket** blue button allow create new buckets (as of now, minimum input validation is implemented). For any bucket, right-click to upload a file (objects). For demonstration, objects **are not** automatically translated, but right-click on a object and select **Translate**. 
+On the webpage, the **New Bucket** blue button allow create new buckets (as of now, minimum input validation is implemented). For any bucket, right-click to upload a file (objects). For demonstration, objects **are not** automatically translated, but right-click on a object and select **Translate**.
 
 # License
 
@@ -85,5 +85,5 @@ Please see the [LICENSE](LICENSE) file for full details.
 
 ## Written by
 
-Denis Grigor [@apprentice3d](https://twitter.com/apprentice3d),   
+Denis Grigor [@apprentice3d](https://twitter.com/apprentice3d),
 [Forge Partner Development](http://forge.autodesk.com)
